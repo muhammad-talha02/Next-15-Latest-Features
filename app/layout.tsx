@@ -60,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={workSans.variable}
+        className={`${workSans.variable}`}
       >
         {children}
       </body>
