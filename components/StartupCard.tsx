@@ -3,8 +3,10 @@ import { EyeIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const StartupCard = ({ post }: { post: any }) => {
+import { Author, Startup } from "@/sanity/types";
+
+export type StartupCardType = Omit<Startup, 'author'> & {author:Author}
+const StartupCard = ({ post }: { post: StartupCardType }) => {
   const {
     _id,
     _createdAt,
@@ -13,7 +15,7 @@ const StartupCard = ({ post }: { post: any }) => {
     category,
     image,
     description,
-    _author: { _id: authorId, name },
+    author: { _id: authorId, name },
   } = post;
   return (
     <li className="startup-card group">
@@ -46,10 +48,10 @@ const StartupCard = ({ post }: { post: any }) => {
       <Link href={`/startup/${_id}`} >
       <p className="startup-card_desc">{description}</p>
       {/* // eslint-disable-next-line @next/next/no-img-element */}
-      <Image src={image}  alt="image" className="startup-card_img" width={100} height={100} unoptimized/>
+      <Image src={`${image}`}  alt="image" className="startup-card_img" width={100} height={100} unoptimized/>
       </Link>
       <div className="flex-between gap-3 mt-5">
-      <Link href={`?query=${category.toLowerCase()}`} >
+      <Link href={`?query=${category?.toLowerCase()}`} >
       <p className="text-16-medium">{category}</p>
       </Link>
       <Button className="startup-card_btn" asChild>
