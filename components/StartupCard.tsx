@@ -32,7 +32,7 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
             <p className="text-16-medium line-clamp-1">{name}</p>
           </Link>
           <Link href={`/startup/${_id}`}>
-            <h3 className="text-26-bold">{title}</h3>
+            <h3 className="font-bold text-2xl">{title}</h3>
           </Link>
         </div>
         <Link href={`/user/${authorId}`}>
