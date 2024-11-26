@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import markdownIt from "markdown-it";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import View from "@/components/View";
 const md = markdownIt();
 
 export const experimental_ppr = true;
@@ -26,7 +27,13 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
       </section>
       <section className="section_container">
         {/* // eslint-disable-next-line @next/next/no-img-element */}
-        <Image src={`${post.image}`} alt="" className="w-full h-auto rounded-r-xl" />
+        <Image
+          src={`${post.image}`}
+          alt=""
+          className="w-full h-auto rounded-r-xl"
+          width={500}
+          height={500}
+        />
 
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
           <div className="flex-between gap-5">
@@ -54,8 +61,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
           {parsedContent ? (
             <article
-              dangerouslySetInnerHTML={{ __html: parsedContent }}
               className="prose max-w-4xl font-work-sans break-all"
+              dangerouslySetInnerHTML={{ __html: parsedContent }}
             />
           ) : (
             <p>No Details Found</p>
@@ -65,8 +72,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
         {/* //TODO: Editor Select Startups  */}
 
-        <Suspense fallback={<Skeleton/>}>
-
+        <Suspense fallback={<Skeleton className="view_skeleton" />}>
+          <View id={id} />
         </Suspense>
       </section>
     </>

@@ -28,3 +28,10 @@ _id , name, image, bio , username
     views,
     description, category, image, pitch
 }[0]`);
+
+
+export const STARTUPS_VIEWS_QUERY = defineQuery(`
+  *[_type == 'startup' && _id == $id][0]{
+  _id, views
+  }
+  `)
