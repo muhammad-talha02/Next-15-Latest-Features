@@ -17,7 +17,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   console.log(post);
   if (!post) return notFound();
 
-  const parsedContent = md.render(post?.pitch as string);
+  const parsedContent = md.render(post?.pitch || '');
   return (
     <>
       <section className="pink_container !min-h-[230px]">
@@ -65,7 +65,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
               dangerouslySetInnerHTML={{ __html: parsedContent }}
             />
           ) : (
-            <p>No Details Found</p>
+            <p className="no-result">No Details Found</p>
           )}
         </div>
         <hr className="divider" />
